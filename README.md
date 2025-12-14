@@ -1,101 +1,249 @@
-Funciones en Kotlin y Programación Modular
+📘 Funciones en Kotlin y Programación
 
-Este documento abarca la teoría fundamental de las funciones en Kotlin, su estructura básica, los tipos de funciones avanzadas y la aplicación práctica de estos conceptos en ejercicios de Jetpack Compose.
+La unidad básica de la modularidad y la reutilización del código en Kotlin son las funciones.
+Este documento explica qué son, cómo se usan y cómo se aplican en Android con Jetpack Compose, combinando teoría clara y ejercicios prácticos.
 
----
+✨ 1. ¿Qué son las Funciones (fun)?
 
-## 1. ✨ Fundamentos: ¿Qué son las Funciones (`fun`)?
+Una función es un bloque de código reutilizable y con nombre que realiza una tarea específica.
+En Kotlin, las funciones se declaran usando la palabra clave fun.
 
-Una función es un bloque de código reusable y con nombre que realiza una tarea específica. En Kotlin, se declaran con la palabra clave `fun`. Son la unidad básica de la modularidad y la reutilización del código (Principio DRY).
+Las funciones son esenciales porque permiten:
 
-### Estructura Básica de una Función en Kotlin
+Modularizar el código
 
-Una función incluye **Parámetros de Entrada**, el **Cuerpo de la Función** (la lógica) y un **Valor de Retorno** (el resultado).
+Reutilizar lógica (Principio DRY: Don't Repeat Yourself)
 
+Mejorar la legibilidad y el mantenimiento del programa
 
-```kotlin
+📌 Estructura básica de una función en Kotlin
+
+Una función normalmente contiene:
+
+Parámetros de entrada
+
+Cuerpo de la función (la lógica)
+
+Valor de retorno
+
 fun sumar(num1: Int, num2: Int): Int {
     // num1 y num2 son los parámetros
     val resultado = num1 + num2
     return resultado // Devuelve un valor de tipo Int
 }
+
 val total = sumar(10, 5) // Llamada con argumentos
-2. 📝 Elementos Clave y ScopeA. Parámetros, Argumentos y RetornoConceptoDescripciónEjemploParámetroVariable definida en la declaración de la función.num1: Int en la definición.ArgumentoEl valor real que se pasa al llamar la función.10 al llamar sumar(10, 5).RetornoTipo de valor que la función debe devolver. Si no devuelve nada, el tipo implícito es Unit.: Int en la declaración.Argumentos por Defecto: Permiten hacer los parámetros opcionales.Kotlinfun saludar(nombre: String = "Usuario", edad: Int) {
+
+📝 2. Elementos Clave y Scope
+A. Parámetros, Argumentos y Retorno
+
+Es importante diferenciar estos conceptos:
+
+Concepto	Descripción	Ejemplo
+Parámetro	Variable definida en la función	num1: Int
+Argumento	Valor real enviado a la función	10 en sumar(10, 5)
+Retorno	Valor que la función devuelve	: Int
+🔹 Argumentos por defecto
+
+Permiten hacer parámetros opcionales:
+
+fun saludar(nombre: String = "Usuario", edad: Int) {
     println("Hola $nombre, tienes $edad años.")
 }
-saludar(edad = 30) // Usa el nombre por defecto: "Usuario"
-B. Ámbito (Scope) de las VariablesEl scope define la accesibilidad. Las variables declaradas dentro de una función son locales y no pueden ser vistas desde fuera.Kotlin// Variable Global (accesible por cualquier función)
-val PI = 3.14159 
+
+saludar(edad = 30)
+
+B. Ámbito (Scope) de las Variables
+
+El scope define dónde una variable es accesible.
+
+Variables globales: accesibles desde cualquier función
+
+Variables locales: solo existen dentro de la función donde se declaran
+
+val PI = 3.14159 // Variable global
 
 fun calcular(radio: Double) {
-    // 'area' es una variable Local
-    val area = PI * radio * radio 
+    val area = PI * radio * radio // Variable local
     println("El área es $area")
 }
-// Error: 'area' no es accesible aquí. Su scope terminó con la función.
-3. 🧩 Tipos de Funciones AvanzadasA. Funciones de Expresión ÚnicaIdeales para funciones cortas donde solo hay una expresión de retorno. Omiten las llaves y la palabra return.Kotlin// Sintaxis simplificada, el tipo de retorno se infiere:
-fun multiplicarCorta(a: Int, b: Int) = a * b 
-B. Funciones de ExtensiónPermiten añadir nuevas funcionalidades a clases existentes (Int, String, etc.) sin modificarlas.Kotlin// Agregamos la función 'esPar' a todos los objetos Int
-fun Int.esPar(): Boolean { 
+
+// Error: 'area' no es accesible fuera de la función
+
+🧩 3. Tipos de Funciones en Kotlin
+A. Funciones de Expresión Única
+
+Son funciones cortas que retornan una sola expresión.
+
+fun multiplicarCorta(a: Int, b: Int) = a * b
+
+B. Funciones de Extensión
+
+Permiten agregar funciones a clases existentes sin modificarlas.
+
+fun Int.esPar(): Boolean {
     return this % 2 == 0
 }
+
 val numero = 4
-println(numero.esPar()) // Resultado: true
-C. Funciones Locales (Nested Functions)Se declaran dentro del cuerpo de otra función. Solo son visibles y accesibles desde la función contenedora, ayudando a encapsular la lógica.Kotlinfun validarYProcesar(input: String) {
-    
-    // Función anidada (Local)
+println(numero.esPar()) // true
+
+C. Funciones de Orden Superior y Lambdas
+
+Son funciones que reciben otras funciones como parámetro o las devuelven.
+
+val lista = listOf(1, 2, 3)
+
+lista.forEach { valor ->
+    println("Item: $valor")
+}
+
+D. Funciones Infix (Notación Infija)
+
+Permiten llamar funciones sin usar punto ni paréntesis.
+Requisitos:
+
+Ser función de extensión o miembro
+
+Tener un solo parámetro
+
+infix fun Int.multiplicadoPor(otro: Int): Int {
+    return this * otro
+}
+
+val r1 = 5.multiplicadoPor(3)
+val r2 = 5 multiplicadoPor 3
+
+E. Funciones Suspendidas (suspend fun)
+
+Se usan con corrutinas en Android para tareas largas o asíncronas sin bloquear la interfaz.
+
+suspend fun obtenerDatos(): String {
+    delay(2000)
+    return "Datos cargados"
+}
+
+F. Funciones Locales (Nested Functions)
+
+Son funciones declaradas dentro de otra función.
+Solo existen dentro de su función contenedora.
+
+fun validarYProcesar(input: String) {
+
     fun esValido(texto: String): Boolean {
         return texto.isNotEmpty()
     }
 
     if (esValido(input)) {
         println("Procesando input...")
-    } 
-    // ...
+    } else {
+        println("Input inválido.")
+    }
 }
-D. Otros Tipos ClaveFunciones de Orden Superior y Lambdas: Aceptan o devuelven otras funciones. (lista.forEach { ... }).Funciones Infix (Notación Infija): Permiten llamar a funciones como si fueran operadores (5 multiplicadoPor 3).Funciones Suspendidas (suspend fun): Fundamentales para Corrutinas; pueden ser pausadas y reanudadas sin bloquear el hilo principal.4. 🎯 Ejercicios Prácticos en Android ComposeEstos ejercicios demuestran la aplicación de funciones en un contexto de UI modular, utilizando Kotlin y Jetpack Compose.Ejercicio 1: Calculadora de Área del CírculoConceptos: Función Nominal (fun), Parámetros de Entrada, Retorno Explícito (return) y Constantes Globales (PI).Kotlin// A. Función de Lógica (Cálculo Reutilizable)
+
+📸 4. Galería Visual: Funciones en Acción (Descripción)
+
+Esta sección complementa los ejemplos de código con representaciones conceptuales como:
+
+Flujo básico de una función
+
+Funciones con retorno explícito
+
+Funciones de extensión
+
+Argumentos por defecto
+
+Funciones locales y su ámbito
+
+Expresiones when
+
+Funciones de expresión única
+
+(Las imágenes no se incluyen en este README)
+
+🎯 5. Ejercicios Prácticos en Android Compose
+🧮 Ejercicio 1: Calculadora de Área del Círculo
+
+Conceptos demostrados:
+
+Función nominal
+
+Parámetros
+
+Retorno explícito
+
+Uso de constantes globales
+
+A. Función de lógica
 import kotlin.math.PI
 
 fun calcularAreaCirculo(radio: Double): Double {
-    val area = PI * radio * radio 
-    return area 
+    val area = PI * radio * radio
+    return area
 }
 
-// B. Implementación en la UI
+B. Implementación en la UI (Composable)
 @Composable
 fun CalculadoraAreaCirculoScreen() {
-    // ... UI setup ...
+    var inputRadio by remember { mutableStateOf("") }
+    var resultadoArea by remember { mutableStateOf("0.0") }
+
     Button(
         onClick = {
-            val radio = inputRadio.toDoubleOrNull() ?: 0.0 
-            val areaCalculada = calcularAreaCirculo(radio) 
+            val radio = inputRadio.toDoubleOrNull() ?: 0.0
+            val areaCalculada = calcularAreaCirculo(radio)
             resultadoArea = String.format("%.2f", areaCalculada)
         }
-    ) { Text("Calcular Área") }
-    // ...
-}
-Ejercicio 2: Verificador de Voto (Ecuador)Conceptos: Función Booleana (Retorna True/False), Expresión Única y Lógica Condicional Sencilla.Kotlin// A. Función de Lógica (Verificación de Edad)
-/**
- * Verifica si la edad cumple con el mínimo de 16 años de Ecuador.
- */
-fun esElegible(edad: Int) = edad >= 16 
+    ) {
+        Text("Calcular Área")
+    }
 
-// B. Implementación en la UI
+    Text("Resultado (Área): $resultadoArea metros cuadrados")
+}
+
+🗳️ Ejercicio 2: Verificador de Voto (Ecuador)
+
+Conceptos demostrados:
+
+Función booleana
+
+Expresión única
+
+Lógica condicional
+
+A. Función de lógica
+fun esElegible(edad: Int) = edad >= 16
+
+B. Implementación en la UI (Composable)
 @Composable
 fun VerificadorVotoEcuadorScreen() {
-    // ... UI setup ...
+
     Button(
         onClick = {
-            val edad = edadInput.toIntOrNull() ?: 0 
-            val esAceptado = esElegible(edad) 
-            
+            val edad = edadInput.toIntOrNull() ?: 0
+            val esAceptado = esElegible(edad)
+
             if (esAceptado) {
                 resultadoTexto = "Puedes votar en las próximas elecciones, has sido aceptado."
             } else {
                 resultadoTexto = "Lo sentimos, no cumples con la edad mínima (16 años) para votar."
             }
-            showDialog = true 
+
+            showDialog = true
         }
-    ) { Text("Verificar") }
-    // ...
+    ) {
+        Text("Verificar")
+    }
 }
+
+✅ Conclusión
+
+Las funciones en Kotlin permiten escribir código:
+
+Más limpio
+
+Más reutilizable
+
+Más fácil de mantener
+
+Su uso es fundamental tanto en programación general como en el desarrollo de Android con Jetpack Compose, donde la modularidad y la claridad son claves.
