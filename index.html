@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚙️ Funciones en Kotlin y Programación</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilos Globales y Fondo */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa; /* Fondo suave y moderno */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Encabezado Principal */
+        header {
+            background-color: #007bff; /* Azul primario de Kotlin */
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            font-weight: 700;
+        }
+
+        /* Contenido y Tarjetas (Cards) */
+        .content-section {
+            padding: 20px 0;
+        }
+
+        h2 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            font-size: 2em;
+        }
+        
+        h3 {
+            color: #28a745; /* Color secundario para títulos */
+            margin-top: 25px;
+            font-size: 1.5em;
+        }
+        
+        p, li {
+            font-size: 1.05em;
+            color: #555;
+        }
+
+        /* Estilo de Tarjeta General */
+        .card {
+            background-color: #ffffff;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo de la Tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            font-size: 0.95em;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: 700;
+        }
+        
+        /* BLOQUES DE CÓDIGO (Visor Estilo VS Code Dark) */
+        pre {
+            background: #282c34; 
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 1em;
+            font-family: 'JetBrains Mono', monospace; 
+            color: #abb2bf; /* Color de texto por defecto */
+            margin-top: 15px;
+        }
+        
+        /* Sintaxis de Kotlin */
+        .kw { color: #c678dd; } /* palabras clave (fun, if, val, return) */
+        .type { color: #e5c07b; } /* tipos (Int, String) */
+        .fn { color: #61afef; } /* funciones (sumar, println) */
+        .str { color: #98c379; } /* cadenas ("Hola") */
+        .op { color: #56b6c2; } /* operadores (:, =) */
+        .num { color: #d19a66; } /* números (5, 3) */
+        .com { color: #5c6370; } /* comentarios */
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>⚙️ Funciones en Kotlin y Programación</h1>
+        <p>La unidad básica de la modularidad y la reutilización del código.</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="content-section">
+            
+            <div class="card">
+                <h2>1. ✨ ¿Qué son las Funciones (`fun`)?</h2>
+                <p>Una función es un bloque de código reusable y con nombre que realiza una tarea específica. En Kotlin, se declaran con la palabra clave <code>fun</code>.</p>
+                <p>Son esenciales para la modularidad, la reutilización de código (Principio DRY) y para hacer el programa más legible.</p>
+
+                <p style="text-align: center;"></p>
+
+                <h3>Estructura Básica de una Función en Kotlin</h3>
+                <p>Una función típicamente incluye Parámetros de Entrada, el Cuerpo de la Función (el proceso) y un Valor de Retorno (el resultado).</p>
+                <pre>
+<span class="kw">fun</span> <span class="fn">sumar</span>(<span class="kw">num1</span>: <span class="type">Int</span>, <span class="kw">num2</span>: <span class="type">Int</span>): <span class="type">Int</span> {
+    <span class="com">// num1 y num2 son los parámetros</span>
+    <span class="kw">val</span> <span class="fn">resultado</span> <span class="op">=</span> <span class="kw">num1</span> <span class="op">+</span> <span class="kw">num2</span>
+    <span class="kw">return</span> <span class="fn">resultado</span> <span class="com">// Devuelve un valor de tipo Int</span>
+}
+
+<span class="kw">val</span> <span class="fn">total</span> <span class="op">=</span> <span class="fn">sumar</span>(<span class="num">10</span>, <span class="num">5</span>) <span class="com">// Llamada con argumentos</span>
+</pre>
+            </div>
+            
+            <div class="card">
+                <h2>2. 📝 Elementos Clave y Scope</h2>
+
+                <h3>A. Parámetros, Argumentos y Retorno</h3>
+                <p>La diferencia entre Parámetro y Argumento es fundamental:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Descripción</th>
+                            <th>Ejemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Parámetro</td>
+                            <td>Variable definida en la declaración de la función.</td>
+                            <td><code>num1: Int</code> en la definición.</td>
+                        </tr>
+                        <tr>
+                            <td>Argumento</td>
+                            <td>El valor real que se pasa al llamar la función.</td>
+                            <td><code>10</code> al llamar <code>sumar(10, 5)</code>.</td>
+                        </tr>
+                        <tr>
+                            <td>Retorno</td>
+                            <td>Tipo de valor que la función debe devolver. Si no devuelve nada, el tipo implícito es <code>Unit</code>.</td>
+                            <td><code>: Int</code> en la declaración.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 15px;">Argumentos por Defecto: Permiten hacer los parámetros opcionales.</p>
+                <pre>
+<span class="kw">fun</span> <span class="fn">saludar</span>(<span class="kw">nombre</span>: <span class="type">String</span> <span class="op">=</span> <span class="str">"Usuario"</span>, <span class="kw">edad</span>: <span class="type">Int</span>) {
+    <span class="fn">println</span>(<span class="str">"Hola $nombre, tienes $edad años."</span>)
+}
+
+<span class="fn">saludar</span>(<span class="kw">edad</span> <span class="op">=</span> <span class="num">30</span>) <span class="com">// Usa el nombre por defecto: "Usuario"</span>
+</pre>
+
+                <h3>B. Ámbito (Scope) de las Variables</h3>
+                <p>El scope define la accesibilidad de las variables. Las variables declaradas dentro de una función son locales y no pueden ser vistas desde fuera.</p>
+                <pre>
+<span class="com">// Variable Global (accesible por cualquier función)</span>
+<span class="kw">val</span> <span class="fn">PI</span> <span class="op">=</span> <span class="num">3.14159</span> 
+
+<span class="kw">fun</span> <span class="fn">calcular</span>(<span class="kw">radio</span>: <span class="type">Double</span>) {
+    <span class="com">// 'area' es una variable Local</span>
+    <span class="kw">val</span> <span class="fn">area</span> <span class="op">=</span> <span class="fn">PI</span> * <span class="kw">radio</span> * <span class="kw">radio</span> 
+    <span class="fn">println</span>(<span class="str">"El área es $area"</span>)
+}
+
+<span class="com">// Error: 'area' no es accesible aquí. Su scope terminó con la función.</span>
+<span class="com">// val resultado = area </span>
+</pre>
+            </div>
+           <div class="card">
+                <h2>3. 🧩 Tipos de Funciones en Kotlin</h2>
+                
+                <h3>A. Funciones de Expresión Única</h3>
+                <p>Ideales para funciones cortas donde solo hay una expresión de retorno. Ahorran código al omitir las llaves y la palabra <code>return</code>.</p>
+                <pre>
+<span class="com">// Sintaxis simplificada, el tipo de retorno se infiere:</span>
+<span class="kw">fun</span> <span class="fn">multiplicarCorta</span>(<span class="kw">a</span>: <span class="type">Int</span>, <span class="kw">b</span>: <span class="type">Int</span>) <span class="op">=</span> <span class="kw">a</span> * <span class="kw">b</span> 
+</pre>
+
+                <h3>B. Funciones de Extensión</h3>
+                <p>Permiten añadir nuevas funcionalidades a clases existentes (como <code>String</code>, <code>Int</code> o tus propias clases) sin modificarlas. Esto hace que el código sea más legible y orientado a objetos.</p>
+                <pre>
+<span class="com">// Agregamos la función 'esPar' a todos los objetos Int</span>
+<span class="kw">fun</span> <span class="type">Int</span>.<span class="fn">esPar</span>(): <span class="type">Boolean</span> { 
+    <span class="kw">return</span> <span class="kw">this</span> <span class="op">%</span> <span class="num">2</span> <span class="op">==</span> <span class="num">0</span>
+}
+
+<span class="com">// Uso:</span>
+<span class="kw">val</span> <span class="fn">numero</span> <span class="op">=</span> <span class="num">4</span>
+<span class="fn">println</span>(<span class="kw">numero</span>.<span class="fn">esPar</span>()) <span class="com">// Resultado: true</span>
+</pre>
+
+                <h3>C. Funciones de Orden Superior y Lambdas</h3>
+                <p>Son funciones que aceptan otras funciones como parámetro o que devuelven una función como resultado. Son la base de muchas operaciones con colecciones (<code>map</code>, <code>filter</code>) y en Jetpack Compose.</p>
+                <pre>
+<span class="com">// La función 'forEach' toma una función Lambda como argumento</span>
+<span class="kw">val</span> <span class="fn">lista</span> <span class="op">=</span> <span class="fn">listOf</span>(<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>)
+
+<span class="fn">lista</span>.<span class="fn">forEach</span> { <span class="kw">valor</span> <span class="op">-></span> 
+    <span class="fn">println</span>(<span class="str">"Item: $valor"</span>) <span class="com">// La lambda se ejecuta por cada elemento</span>
+}
+</pre>
+
+                <hr style="border-top: 1px dashed #ccc; margin: 30px 0;">
+                
+                <h3>D. Funciones Infix (Notación Infija)</h3>
+                <p>Permiten llamar a una función sin usar el punto ni los paréntesis, como si fueran operadores. Deben ser funciones de extensión o miembro y tomar exactamente **un solo parámetro**.</p>
+                <pre>
+<span class="kw">infix</span> <span class="kw">fun</span> <span class="type">Int</span>.<span class="fn">multiplicadoPor</span>(<span class="kw">otro</span>: <span class="type">Int</span>): <span class="type">Int</span> {
+    <span class="kw">return</span> <span class="kw">this</span> * <span class="kw">otro</span>
+}
+
+<span class="com">// Uso normal (sintaxis de punto)</span>
+<span class="kw">val</span> <span class="fn">r1</span> <span class="op">=</span> <span class="num">5</span>.<span class="fn">multiplicadoPor</span>(<span class="num">3</span>)
+
+<span class="com">// Uso Infix (sintaxis sin punto ni paréntesis, más legible)</span>
+<span class="kw">val</span> <span class="fn">r2</span> <span class="op">=</span> <span class="num">5</span> <span class="fn">multiplicadoPor</span> <span class="num">3</span>
+<span class="com">// r2 es 15</span>
+</pre>
+                
+                <h3>E. Funciones Suspendidas (`suspend fun`)</h3>
+                <p>Son fundamentales en el desarrollo de Android con Corrutinas. Una función `suspend` es una función que puede ser **pausada y reanudada** más tarde sin bloquear el hilo principal (UI). Se usan para tareas largas o asíncronas (redes, bases de datos).</p>
+                <pre>
+<span class="com">// La función 'delay' solo puede ser llamada dentro de otra suspend fun o un CoroutineScope</span>
+<span class="kw">suspend</span> <span class="kw">fun</span> <span class="fn">obtenerDatos</span>(): <span class="type">String</span> {
+    <span class="fn">delay</span>(<span class="num">2000</span>) <span class="com">// Pausa la ejecución por 2 segundos sin bloquear el hilo</span>
+    <span class="kw">return</span> <span class="str">"Datos cargados"</span>
+}
+
+<span class="com">// Permite que el código asíncrono se vea y se escriba de forma secuencial.</span>
+</pre>
+
+                <h3>F. Funciones Locales (Nested Functions)</h3>
+                <p>Son funciones que se declaran dentro del cuerpo de otra función. Solo son visibles y accesibles desde la función contenedora, ayudando a encapsular la lógica compleja o repetitiva internamente.</p>
+                <pre>
+<span class="kw">fun</span> <span class="fn">validarYProcesar</span>(<span class="kw">input</span>: <span class="type">String</span>) {
+    
+    <span class="com">// Función anidada (Local)</span>
+    <span class="kw">fun</span> <span class="fn">esValido</span>(<span class="kw">texto</span>: <span class="type">String</span>): <span class="type">Boolean</span> {
+        <span class="kw">return</span> <span class="kw">texto</span>.<span class="fn">isNotEmpty</span>()
+    }
+
+    <span class="kw">if</span> (<span class="fn">esValido</span>(<span class="kw">input</span>)) {
+        <span class="fn">println</span>(<span class="str">"Procesando input..."</span>)
+    } <span class="kw">else</span> {
+        <span class="fn">println</span>(<span class="str">"Input inválido."</span>)
+    }
+}
+<span class="com">// Error: La función 'esValido' no es accesible fuera de 'validarYProcesar'</span>
+</pre>
+            </div>
+<hr style="border-top: 2px dashed #007bff; margin: 40px 0;">
+
+            <h2>5. 📸 Galería Visual: Funciones en Acción</h2>
+            <p>Esta sección complementa los ejemplos de código con diagramas y representaciones visuales que ayudan a comprender mejor los conceptos de las funciones en Kotlin y su aplicación en Android Compose.</p>
+
+            <div class="image-gallery">
+                <div class="image-item">
+                    <h3>Diagrama 1: Flujo Básico de una Función</h3>
+                    <p>Visualización del proceso de una función: entrada de parámetros, ejecución de lógica y retorno de un valor.</p>
+                    <p style="text-align: center; color: #6c757d;"><img src="https://libros.catedu.es/uploads/images/gallery/2022-09/image-1663870313416.png" alt=""></p>
+                </div>
+
+                <div class="image-item">
+                    <h3>Diagrama 2: Función Nominal (Ej. Área del Círculo)</h3>
+                    <p>Representación visual de una función con parámetros y un retorno explícito, como el cálculo del área.</p>
+                    <p style="text-align: center; color: #6c757d;"><img src="https://i.pinimg.com/564x/d6/08/c2/d608c2f577f30745a0c7e6e11345e526.jpg"></p>
+                </div>
+
+                <div class="image-item">
+                    <h3>Diagrama 3: Funciones de Extensión en Kotlin</h3>
+                    <p>Cómo las funciones de extensión "añaden" comportamientos a clases existentes sin modificarlas directamente.</p>
+                    <p style="text-align: center; color: #6c757d;"><img src="https://keepcoding.io/wp-content/uploads/2022/07/Funciones-de-extension-en-Kotlin.jpg"></p>
+                </div>
+
+                <div class="image-item">
+                    <h3>Diagrama 4: Argumentos por Defecto</h3>
+                    <p>Ilustración de cómo los argumentos por defecto hacen los parámetros opcionales en las funciones.</p>
+                    <p style="text-align: center; color: #6c757d;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR44MawjrD3ShVv0OLoxe8_Fylo-YmpY2Y05g&s"></p>
+                </div>
+                
+                <div class="image-item">
+                    <h3>Diagrama 5: Funciones Locales y su Ámbito</h3>
+                    <p>Representación del concepto de "scope": funciones anidadas que solo son visibles dentro de su función contenedora.</p>
+                    <p style="text-align: center; color: #6c757d;"><img src="https://www2.eii.uva.es/fund_inf/cpp/_images/ambito_variables.jpg"></p>
+                </div>
+
+                <div class="image-item">
+                    <h3>Diagrama 6: 'when' como Expresión en Kotlin</h3>
+                    <p>Cómo la expresión `when` en Kotlin simplifica la lógica condicional compleja, actuando como un `switch` potente.</p>
+                    <p style="text-align: center; color: #6c757d;"><img src="https://developer.android.com/static/codelabs/basic-android-kotlin-compose-conditionals/img/7112edfc7c7b7918.png?hl=es-419"></p>
+                </div>
+
+                <div class="image-item">
+                    <h3>Diagrama 7: Función de Expresión Única (Concisión)</h3>
+                    <p>La forma más corta de escribir funciones en Kotlin para lógica simple, omitiendo `return` y corchetes.</p>
+                    <p style="text-align: center; color: #6c757d;"><img src="https://developer.android.com/static/codelabs/basic-android-kotlin-compose-function-types-and-lambda/img/f16dd6ca0c1588f5.png?hl=es-419"></p>
+                </div>
+
+            </div>
+            <hr style="border-top: 2px dashed #007bff; margin: 40px 0;">
+
+            <h2>4. 🎯 Ejercicios Prácticos en Android Compose</h2>
+            <p>Estos ejercicios demuestran la aplicación de funciones en un contexto real de UI modular en Android, utilizando Kotlin y Jetpack Compose.</p>
+
+            <div class="card" style="border-left: 5px solid #007bff;">
+                <h3>Ejercicio 1: Calculadora de Área del Círculo</h3>
+                <p>Se puede trabajar en las unidades de centimetros y metros cuadrados depende de cada uno como se lo quiera usar </p>
+                <p><strong>Conceptos Demostrados:</strong> Función Nominal (<code>fun</code>), Parámetros de Entrada, Retorno Explícito (<code>return</code>) y Constantes Globales (<code>PI</code>).</p>
+                
+                <p style="text-align: center;"></p>
+
+                <p><strong>A. Función de Lógica (Cálculo Reutilizable)</strong></p>
+                <pre>
+<span class="com">// Importamos PI para usarlo como constante global</span>
+<span class="kw">import</span> <span class="fn">kotlin.math.PI</span>
+
+<span class="com">/**</span>
+<span class="com"> * Función Nominal que calcula el área de un círculo.</span>
+<span class="com"> * @param radio: El valor del radio del círculo (parámetro).</span>
+<span class="com"> * @return El área calculada como un Double.</span>
+<span class="com"> */</span>
+<span class="kw">fun</span> <span class="fn">calcularAreaCirculo</span>(<span class="kw">radio</span>: <span class="type">Double</span>): <span class="type">Double</span> {
+    <span class="com">// PI es una constante global accesible (Scope)</span>
+    <span class="kw">val</span> <span class="fn">area</span> <span class="op">=</span> <span class="fn">PI</span> * <span class="kw">radio</span> * <span class="kw">radio</span> 
+    <span class="kw">return</span> <span class="fn">area</span> <span class="com">// Retorno explícito del resultado</span>
+}
+</pre>
+                
+                <p><strong>B. Implementación en la UI (Fragmento de la Composable)</strong></p>
+                <pre>
+<span class="com">/* La función principal para la pantalla */</span>
+<span class="kw">@Composable</span>
+<span class="kw">fun</span> <span class="fn">CalculadoraAreaCirculoScreen</span>() {
+    <span class="com">// Estado para guardar el texto introducido por el usuario</span>
+    <span class="kw">var</span> <span class="fn">inputRadio</span> <span class="kw">by</span> <span class="fn">remember</span> { <span class="fn">mutableStateOf</span>(<span class="str">""</span>) }
+    <span class="kw">var</span> <span class="fn">resultadoArea</span> <span class="kw">by</span> <span class="fn">remember</span> { <span class="fn">mutableStateOf</span>(<span class="str">"0.0"</span>) }
+
+    <span class="com">// ... OutlinedTextField ...</span>
+
+    <span class="kw">Button</span>(
+        <span class="kw">onClick</span> <span class="op">=</span> {
+            <span class="com">// Obtiene el valor, usando 0.0 como Argumento por defecto si es nulo</span>
+            <span class="kw">val</span> <span class="fn">radio</span> <span class="op">=</span> <span class="fn">inputRadio</span>.<span class="fn">toDoubleOrNull</span>() <span class="op">?:</span> <span class="num">0.0</span> 
+            
+            <span class="com">// Llamada a la Función de Lógica Pura:</span>
+            <span class="kw">val</span> <span class="fn">areaCalculada</span> <span class="op">=</span> <span class="fn">calcularAreaCirculo</span>(<span class="kw">radio</span>) 
+            
+            <span class="fn">resultadoArea</span> <span class="op">=</span> <span class="fn">String</span>.<span class="fn">format</span>(<span class="str">"%.2f"</span>, <span class="fn">areaCalculada</span>)
+        }
+    ) { <span class="kw">Text</span>(<span class="str">"Calcular Área"</span>) }
+
+    <span class="kw">Text</span>(<span class="str">"Resultado (Área): $resultadoArea metros cuadrados"</span>)
+}
+</pre>
+            </div>
+
+            <div class="card" style="border-left: 5px solid #28a745;">
+                <hr style="border-top: 1px dotted #6c757d; margin: 30px 0;">
+            
+            <div class="card" style="border-left: 5px solid #ffc107;">
+                <h3>Ejercicio 2: Verificador de Voto (Ecuador)</h3>
+                <p><strong>Conceptos Demostrados:</strong> Función Booleana (Retorna <code>True</code>/<code>False</code>), Expresión Única y Lógica Condicional Sencilla.</p>
+
+                <p style="text-align: center;"></p>
+
+                <p><strong>A. Función de Lógica (Verificación de Edad)</strong></p>
+                <pre>
+<span class="com">/**
+ * Función de Expresión Única (la más sencilla).
+ * Verifica si la edad cumple con el mínimo de 16 años de Ecuador.
+ * El tipo de retorno (Boolean) se infiere.
+ */</span>
+<span class="kw">fun</span> <span class="fn">esElegible</span>(<span class="kw">edad</span>: <span class="type">Int</span>) <span class="op">=</span> <span class="kw">edad</span> <span class="op">>=</span> <span class="num">16</span> 
+</pre>
+                
+                <p><strong>B. Implementación en la UI (Fragmento de la Composable)</strong></p>
+                <pre>
+<span class="kw">@Composable</span>
+<span class="kw">fun</span> <span class="fn">VerificadorVotoEcuadorScreen</span>() {
+    <span class="com">// ... Definición de Estados (edadInput, showDialog, resultadoTexto) ...</span>
+
+    <span class="kw">Button</span>(
+        <span class="kw">onClick</span> <span class="op">=</span> {
+            <span class="kw">val</span> <span class="fn">edad</span> <span class="op">=</span> <span class="fn">edadInput</span>.<span class="fn">toIntOrNull</span>() <span class="op">?:</span> <span class="num">0</span> 
+            
+            <span class="com">// Llamada a la Función Booleana:</span>
+            <span class="kw">val</span> <span class="fn">esAceptado</span> <span class="op">=</span> <span class="fn">esElegible</span>(<span class="kw">edad</span>) 
+            
+            <span class="kw">if</span> (<span class="fn">esAceptado</span>) {
+                <span class="fn">resultadoTexto</span> <span class="op">=</span> <span class="str">"Puedes votar en las próximas elecciones, has sido aceptado."</span>
+            } <span class="kw">else</span> {
+                <span class="fn">resultadoTexto</span> <span class="op">=</span> <span class="str">"Lo sentimos, no cumples con la edad mínima (16 años) para votar."</span>
+            }
+            <span class="fn">showDialog</span> <span class="op">=</span> <span class="kw">true</span> 
+        }
+    ) { <span class="kw">Text</span>(<span class="str">"Verificar"</span>) }
+
+    <span class="com">// ... AlertDialog que usa resultadoTexto para mostrar el mensaje ...</span>
+}
+</pre>
+            </div>
+<hr style="border-top: 2px dashed #007bff; margin: 40px 0;">
+            <h1>Ejercicios prácticos y Readme (Dar click en los enlaces)</h1>
+<a href="https://drive.google.com/file/d/1LaGQxuMkoEJEbMt3toYQ6VCt734SA6y1/view?usp=sharing">Video de los 2 ejercicios prácticos subiendo en Google Drive</a><br>
+<a href="https://github.com/fabricioquillupangui1/deber2_Funciones_pva/blob/main/README.md">Enlace de github a Readme</a>
+</body>
+</html>
