@@ -1,15 +1,31 @@
-Este repositorio contiene una explicación clara, estructurada y práctica sobre las funciones en Kotlin, su importancia en la programación modular y su aplicación real en Jetpack Compose para Android. El objetivo es comprender cómo las funciones permiten organizar el código, reutilizar lógica y construir interfaces limpias y mantenibles.
+🚀 FUNCIONES EN KOTLIN Y PROGRAMACIÓN  
+📱 Aplicación práctica en Android con Jetpack Compose
 
-✨ 1. ¿Qué son las Funciones (fun)?
-Una función es un bloque de código reutilizable y con nombre que realiza una tarea específica. En Kotlin se declaran utilizando la palabra clave fun.
+Este repositorio está enfocado en el **tema principal: FUNCIONES EN KOTLIN**, explicadas de forma clara, progresiva y aplicada al desarrollo de interfaces modernas con **Jetpack Compose**.  
+El objetivo es comprender cómo las funciones permiten construir código **modular**, **reutilizable**, **legible** y **mantenible**, tanto en la lógica como en la interfaz de usuario.
 
-Las funciones son fundamentales porque:
-- Permiten dividir un programa grande en partes pequeñas
-- Evitan repetir código (Principio DRY)
-- Mejoran la legibilidad y el mantenimiento del software
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 OBJETIVO DEL REPOSITORIO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- Comprender qué son las funciones en Kotlin
+- Diferenciar parámetros, argumentos y retorno
+- Conocer el scope (ámbito) de las variables
+- Identificar los distintos tipos de funciones
+- Aplicar funciones en ejercicios reales con Android Compose
 
-Estructura básica de una función en Kotlin:
-Una función normalmente incluye parámetros de entrada, un cuerpo donde se procesa la lógica y un valor de retorno.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✨ 1. ¿QUÉ SON LAS FUNCIONES (fun)?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Una función es un **bloque de código reutilizable** con un nombre específico que realiza una tarea concreta.  
+En Kotlin, se declaran usando la palabra clave `fun`.
+
+📌 Importancia de las funciones:
+- Dividen el programa en partes pequeñas
+- Evitan la repetición de código (Principio DRY)
+- Mejoran la organización y la lectura del código
+- Facilitan el mantenimiento del software
+
+📌 Estructura básica de una función:
 
 fun sumar(num1: Int, num2: Int): Int {
     val resultado = num1 + num2
@@ -18,15 +34,14 @@ fun sumar(num1: Int, num2: Int): Int {
 
 val total = sumar(10, 5)
 
-📝 2. Elementos Clave y Scope
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🧱 2. ELEMENTOS CLAVE Y SCOPE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔹 Parámetro: variable definida en la función  
+🔹 Argumento: valor enviado al llamar la función  
+🔹 Retorno: valor que devuelve la función (si no devuelve nada → Unit)
 
-A. Parámetros, Argumentos y Retorno
-Parámetro: Variable definida en la función (num1: Int).
-Argumento: Valor enviado al llamar la función (10 en sumar(10, 5)).
-Retorno: Tipo de dato que devuelve la función. Si no devuelve nada, el tipo es Unit.
-
-Argumentos por defecto:
-Permiten que un parámetro tenga un valor inicial y sea opcional.
+Ejemplo con argumentos por defecto:
 
 fun saludar(nombre: String = "Usuario", edad: Int) {
     println("Hola $nombre, tienes $edad años.")
@@ -34,8 +49,8 @@ fun saludar(nombre: String = "Usuario", edad: Int) {
 
 saludar(edad = 30)
 
-B. Ámbito (Scope) de las Variables
-El scope define dónde una variable es accesible. Las variables declaradas dentro de una función son locales.
+🔐 Scope (Ámbito de las variables):
+Las variables declaradas dentro de una función solo existen allí.
 
 val PI = 3.14159
 
@@ -44,15 +59,17 @@ fun calcular(radio: Double) {
     println("El área es $area")
 }
 
-🧩 3. Tipos de Funciones en Kotlin
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🧩 3. TIPOS DE FUNCIONES EN KOTLIN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-A. Funciones de Expresión Única
-Se usan cuando la función tiene una sola expresión de retorno.
+🔹 A. Funciones de Expresión Única  
+Usadas cuando solo existe una expresión de retorno.
 
 fun multiplicarCorta(a: Int, b: Int) = a * b
 
-B. Funciones de Extensión
-Permiten añadir funciones a clases existentes sin modificarlas.
+🔹 B. Funciones de Extensión  
+Agregan comportamiento a clases existentes.
 
 fun Int.esPar(): Boolean {
     return this % 2 == 0
@@ -61,8 +78,8 @@ fun Int.esPar(): Boolean {
 val numero = 4
 println(numero.esPar())
 
-C. Funciones de Orden Superior y Lambdas
-Son funciones que reciben otras funciones como parámetro.
+🔹 C. Funciones de Orden Superior y Lambdas  
+Funciones que reciben otras funciones como parámetro.
 
 val lista = listOf(1, 2, 3)
 
@@ -70,8 +87,8 @@ lista.forEach { valor ->
     println("Item: $valor")
 }
 
-D. Funciones Infix
-Permiten llamar funciones sin punto ni paréntesis, haciendo el código más legible.
+🔹 D. Funciones Infix  
+Permiten una sintaxis más natural y legible.
 
 infix fun Int.multiplicadoPor(otro: Int): Int {
     return this * otro
@@ -80,16 +97,16 @@ infix fun Int.multiplicadoPor(otro: Int): Int {
 val r1 = 5.multiplicadoPor(3)
 val r2 = 5 multiplicadoPor 3
 
-E. Funciones Suspendidas (suspend fun)
-Se utilizan con corrutinas para ejecutar tareas largas sin bloquear el hilo principal.
+🔹 E. Funciones Suspendidas (suspend fun)  
+Usadas con corrutinas para tareas asíncronas sin bloquear la UI.
 
 suspend fun obtenerDatos(): String {
     delay(2000)
     return "Datos cargados"
 }
 
-F. Funciones Locales (Nested Functions)
-Son funciones declaradas dentro de otra función y solo accesibles desde ella.
+🔹 F. Funciones Locales (Nested Functions)  
+Funciones definidas dentro de otra función.
 
 fun validarYProcesar(input: String) {
 
@@ -104,10 +121,12 @@ fun validarYProcesar(input: String) {
     }
 }
 
-🎯 4. Ejercicios Prácticos en Jetpack Compose
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 4. EJERCICIOS PRÁCTICOS EN JETPACK COMPOSE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🧮 Ejercicio 1: Calculadora de Área del Círculo
-Conceptos utilizados:
+🧮 EJERCICIO 1: CALCULADORA DE ÁREA DEL CÍRCULO  
+Conceptos aplicados:
 - Función nominal
 - Parámetros
 - Retorno explícito
@@ -142,8 +161,10 @@ fun CalculadoraAreaCirculoScreen() {
     Text("Resultado (Área): $resultadoArea metros cuadrados")
 }
 
-🗳️ Ejercicio 2: Verificador de Voto (Ecuador)
-Conceptos utilizados:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🗳️ EJERCICIO 2: VERIFICADOR DE VOTO (ECUADOR)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Conceptos aplicados:
 - Función booleana
 - Expresión única
 - Condicionales
@@ -175,5 +196,10 @@ fun VerificadorVotoEcuadorScreen() {
     }
 }
 
-✅ Conclusión
-Las funciones en Kotlin son la base de la programación moderna. Permiten crear código modular, reutilizable y fácil de mantener, y son esenciales para el desarrollo de aplicaciones Android con Jetpack Compose.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ CONCLUSIÓN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Las **funciones en Kotlin** son el pilar de la programación moderna.  
+Permiten crear aplicaciones **modulares**, **reutilizables** y **claras**, siendo esenciales para el desarrollo profesional de aplicaciones Android con **Jetpack Compose**.
+
+📌 Dominar las funciones es el primer paso hacia arquitecturas limpias y aplicaciones escalables.
